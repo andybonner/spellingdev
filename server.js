@@ -1,7 +1,7 @@
 // require express etc.
 const express = require("express");
 const mongoose = require("mongoose");
-const router = require('./router');
+const routes = require("./routes");
 
 
 // initialize express
@@ -12,8 +12,8 @@ const PORT = process.env.PORT || 8080;
 // Serve up static assets
 app.use(express.static("client/build"));
 
-// use router
-router(app);
+// Routing
+app.use(routes);
 
 // DO I NEED?
 // Set up promises with mongoose
