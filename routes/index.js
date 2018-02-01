@@ -28,6 +28,7 @@ module.exports = router;
 // MODELS
 // Word: has string, path to audio, and example string
 // User: has "display name", email, pic?, score/stats data, current word list (maybe list of favorite lists?), position in list
+// List: title?, grade level, array of words, date, maybe private/public
 
 // Stats and user feedback:
 // visual indication of progress through list
