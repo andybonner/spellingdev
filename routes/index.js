@@ -19,7 +19,8 @@ module.exports = router;
 // command to go get it from Oxford (if not found in database) and save to database
 // 
 // CLIENT side routing: 
-// User is prompted to choose a word list.
+// User is prompted to choose a word list. (NB: don't use an actual drop-down;
+// use something better like a modal. Maybe multi-step drill-down category selection.)
 // IF no word lists, user is prompted to upload one.
 // /upload: a page to enter a list (at first a field; later use csv txt)
 // state holds awareness of current list
