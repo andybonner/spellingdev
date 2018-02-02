@@ -1,11 +1,18 @@
 const router = require("express").Router();
 const wordsController = require("../../controllers/wordsController");
-const oed = require("../../controllers/oedController");
+const oedBundle = require("../../services/oedBundle");
 
 // Matches with "/api/words"
 router.route("/")
   .get(wordsController.findAll)
-  .post(
+  .post((req, res) => {
+    oed(req.body.word)
+    .then(data) => {
+      req.body.audio_path = data.results[0].lexicalEntries[0].pronunciations[1].audioFile; //TODO: this will need checks at every level whether the desired property exists, logic to back up and traverse tree if not, and error handling and fallback in case not found anywhere. This probably means breaking out into another module again. Pack into oedController?
+      req.body.example = data.xxxxx;
+      wordsController
+    }
+  }
     // in here:
     // 1. instead of immediately invoking wordsController.create--which is, in fact, a function with req and res params--turn this into such a function.
     // 2. take the req.body.word and send it off as a query to OED
