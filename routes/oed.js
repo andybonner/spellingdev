@@ -1,5 +1,5 @@
 // Route to fetch word data from external Oxford English Dictionary API
-const request = require('request');
+const requestP = require('request-promise-native');
 
 const headers = {
   "Accept": "application/json",
