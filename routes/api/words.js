@@ -6,11 +6,12 @@ const oedBundle = require("../../services/oedBundle");
 router.route("/")
   .get(wordsController.findAll)
   .post((req, res) => {
-    oed(req.body.word)
+    // pass entirety of req into oedBundle for OED data to be added
+    oedBundle(req)
+    // TODO: change what's below. oedBundle will hand back the augmented req; now pass it along with res into wordsController
     .then(data) => {
       req.body.audio_path = data.results[0].lexicalEntries[0].pronunciations[1].audioFile; //TODO: this will need checks at every level whether the desired property exists, logic to back up and traverse tree if not, and error handling and fallback in case not found anywhere. This probably means breaking out into another module again. Pack into oedController?
       req.body.example = data.xxxxx;
-      wordsController
     }
   }
     // in here:
