@@ -1,5 +1,5 @@
 // Route to fetch word data from external Oxford English Dictionary API
-const requestP = require('request-promise-native');
+const request = require('request');
 
 const headers = {
   "Accept": "application/json",
@@ -8,10 +8,14 @@ const headers = {
 }
 
 module.exports = {
-  lookup: word => {
-    return requestP({
-      uri: 'https://od-api.oxforddictionaries.com:443/api/v1/entries/en/' + word + '/regions=us',
+  lookup: (word, callback) => {
+    const options = {
+      uri: 'https://od-api.oxforddictionaries.com:443/api/v1/entries/en/' + word + '/regions%3Dus%3Bpronunciations%3Bdefinitions%3Bexamples',
       headers: headers
+    }
+
+    return request(options, (error, response, body) => {
+      callback(body);
     });
   }
 }
