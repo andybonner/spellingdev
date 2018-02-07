@@ -6,8 +6,9 @@ const wordSchema = new Schema({
   word: { type: String, required: true },
   // this may be a relative path to an audio file saved onto the server,
   // or an absolute path to the OED's file
-  audio_path: {},
-  example: {type: String},
+  audio_path: {type: String},
+  definitions: [],
+  examples: [],
   date_updated: { type: Date, default: Date.now }
 });
 
