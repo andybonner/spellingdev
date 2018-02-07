@@ -15,7 +15,7 @@ module.exports = {
     }
 
     return request(options, (error, response, body) => {
-      callback(body);
+      callback(JSON.parse(body));
     });
   }
 }
