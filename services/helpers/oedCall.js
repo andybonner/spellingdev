@@ -15,6 +15,7 @@ module.exports = {
     }
 
     return request(options, (error, response, body) => {
+      // TODO: error handling
       callback(JSON.parse(body));
     });
   }
