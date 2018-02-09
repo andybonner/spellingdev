@@ -19,4 +19,6 @@ router
   .put(listsController.update)
   .delete(listsController.remove);
 
+// TODO: I'll need API routes to manually update words
+
 module.exports = router;
