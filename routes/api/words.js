@@ -8,6 +8,8 @@ router.route("/")
   .post((req, res) => {
     // pass entirety of req into oedBundle for OED data to be added
     oedBundle(req);
+    // Wait, new plan, pass to wordMaker...?
+    // Rely on wordMaker to call wordsController (after oedBundle) itself?
 
     // send augmented req to wordsController, which will save to DB and handle res
     wordsController.create(req, res);
