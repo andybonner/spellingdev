@@ -20,9 +20,7 @@ app.use(routes);
 mongoose.Promise = global.Promise;
 
 // connect to db
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/spellingbee", {
-  useMongoClient: true
-});
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/spellingbee");
 
 // Start the API server
 app.listen(PORT, function() {
