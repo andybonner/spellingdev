@@ -1,18 +1,16 @@
 const router = require("express").Router();
 const wordsController = require("../../controllers/wordsController");
-const oedBundle = require("../../services/oedBundle");
+const wordMaker = require("../../services/wordMaker")
 
 // Matches with "/api/words"
 router.route("/")
   .get(wordsController.findAll)
   .post((req, res) => {
-    // pass entirety of req into oedBundle for OED data to be added
-    oedBundle(req);
-    // Wait, new plan, pass to wordMaker...?
-    // Rely on wordMaker to call wordsController (after oedBundle) itself?
-
-    // send augmented req to wordsController, which will save to DB and handle res
-    wordsController.create(req, res);
+    // pass req, which contains list of words and ID of associated list, to wordMaker,
+    // which will call OED for each word, bundle in additional data,
+    // save entire batch via model.insertMany(), update related list with word IDs,
+    // and ultimately return res to the client
+    wordMaker(req, res);
   }
   );
 
