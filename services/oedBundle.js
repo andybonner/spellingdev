@@ -3,7 +3,7 @@ const jsonFind = require('json-find');
 // accepts query word, retrieves data from OED, and executes callback
 const oedCall = require('./helpers/oedCall');
 
-const bundle = (obj) => {
+const bundle = (obj, callback) => {
   // pass input word to oedCall to fetch OED data
   oedCall.lookup(obj.word, (data) => {
     const doc = jsonFind(data);
@@ -25,6 +25,7 @@ const bundle = (obj) => {
       obj.examples.push(exampleObj.text);
     }
   });
+  callback(obj);
 }
 
 module.exports = bundle;
