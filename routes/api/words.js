@@ -5,14 +5,11 @@ const wordMaker = require("../../services/wordMaker")
 // Matches with "/api/words"
 router.route("/")
   .get(wordsController.findAll)
-  .post((req, res) => {
-    // pass req, which contains list of words and ID of associated list, to wordMaker,
-    // which will call OED for each word, bundle in additional data,
-    // save entire batch via model.insertMany(), update related list with word IDs,
+  .post(wordMaker);
+    // wordMaker receives req, which contains list of words and ID of associated list.
+    // wordMaker will call OED for each word, bundle in additional data,
+    // save entire batch via insertMany(), update related list with word IDs,
     // and ultimately return res to the client
-    wordMaker(req, res);
-  }
-  );
 
 // Matches with "/api/words/:id"
 router
