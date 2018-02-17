@@ -15,7 +15,6 @@ app.use(express.static("client/build"));
 // Routing
 app.use(routes);
 
-// DO I NEED?
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;
 
