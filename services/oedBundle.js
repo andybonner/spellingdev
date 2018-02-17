@@ -16,7 +16,7 @@ const bundle = (obj) => {
     // TODO: consider harvesting more definitions, giving the user the option to cyle through multiples.
     // It can't be done with doc.findValues('definitions', 'definitions', 'definitions'), though.
 
-    // find and add examples
+    // find and add word usage examples
     // for prop 'examples', OED returns an array of objecs, each with prop 'text'
     obj.examples = [];
     const examplesArray = doc.findValues('examples').examples;
