@@ -20,10 +20,10 @@ module.exports ={
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  insertMany: function(req, res) {
+  insertMany: function(array, callback) { //check--is this really okay? it doesn't have to be req, res?
     db.Word
-      .insertMany(req.body) //check--should it be req.body. something?
-      .then(docs => console.log(docs)) //TODO: replace this testing line with real handling
+      .insertMany(array)
+      .then(dbModel => callback(dbModel))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
