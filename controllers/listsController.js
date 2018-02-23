@@ -20,10 +20,10 @@ module.exports ={
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  update: function(req, res) {
+  update: function(id, input, callback) {
     db.List
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
+      .findOneAndUpdate({ _id: id }, input)
+      .then(dbModel => callback(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
