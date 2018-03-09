@@ -1,5 +1,6 @@
 // require express etc.
 const express = require("express");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 
@@ -8,6 +9,10 @@ const routes = require("./routes");
 const app = express();
 // specify PORT with local and production
 const PORT = process.env.PORT || 8080;
+
+// Configure body parser for AJAX requests
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Serve up static assets
 app.use(express.static("client/build"));
