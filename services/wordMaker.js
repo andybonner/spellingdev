@@ -23,7 +23,7 @@ module.exports = (req, res) => {
   // send entire array of word objects to wordsController's insertMany method
   wordsController.insertMany(wordCollection, (dbDocs) => {
     // dbDocs is an array of the resultant doc objects
-    // collect word IDs
+    // save word IDs to an array, to be added to list
     const updateObj = {
       words: []
     }
@@ -32,11 +32,12 @@ module.exports = (req, res) => {
       updateObj.words.push(wordObj._id);
     }
     // add IDs of new words as refs in List
+    // req.body.listID holds ID of relevant list
     listsController.update(req.body.listID, updateObj, (dbList) => {
-      // res.json(dbList)
+      // return updated list to the client
+      res.json(dbList);
     })
     
   });
 
-  // note for later: req.body.listID holds ID of relevant list
 }
