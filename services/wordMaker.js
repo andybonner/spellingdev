@@ -23,17 +23,13 @@ module.exports = (req, res) => {
       // pass object to oedBundle, which will pack OED data into it
       oedBundle(array[i]);
     }
-    return await Promise.all(array);
+    return saveWords(await Promise.all(array));
   }
   
-  
-  bundleAll(wordCollection).then((alteredArray) => {
-    console.log("After bundling, alteredArray is", alteredArray);
-    console.log("After bundling, wordCollection is", wordCollection);
-    
-    // send entire array of word objects to wordsController's insertMany method
-    wordsController.insertMany(wordCollection, (dbDocs) => {
+  function saveWords(array) {
+    wordsController.insertMany(array, (dbDocs) => {
       // dbDocs is an array of the resultant doc objects
+      console.log("After bundling, array is", array);
       console.log("DB responded to words insertMany with", dbDocs);
       // save word IDs to an array, to be added to list
       const updateObj = {
@@ -49,7 +45,8 @@ module.exports = (req, res) => {
         // return updated list to the client
         res.json(dbList);
       });
-      
     });
-  });
+  }
+  
+  bundleAll(wordCollection);
 }
